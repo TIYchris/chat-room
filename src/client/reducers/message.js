@@ -1,32 +1,35 @@
-/*
-Message example:
-messages: [
-  {
-    creator: 'username',
-    creatorColor: '#666666',
-    content: 'asdf',
-    contentColor: '#666666'
-  },
-  {...}
-]
-
- */
-
 const messagesInitialState = {
-  messages: []
+  messages: [],
+  users: []
 }
 
 export default function (state = messagesInitialState, action) {
+  const newState = Object.assign({}, state);
+
   switch (action.type) {
     case 'ADD_MESSAGE':
+    	newState.messages.push(action.message);
+    	break;
 
-      let newState = Object.assign({}, state);
+    case 'USER_LOGGED_IN':
+    	newState.userName = action.userName;
+    	break;
 
-      newState.messages.push(action.message);
+    case 'USER_LOGGED_OUT':
+    	newState.userName = undefined;
+    	break;
 
-      return newState;
+    case 'USER_JOINED':
+    	newState.users.push(action.userName);
+    	break;
 
-    default:
-      return state;
+    case 'USER_LEFT':
+    	var index = newState.users.indexOf(action.userName);
+		if (index > -1) {
+		    newState.users.splice(index, 1);
+		}
+    	break;
   }
+
+  return newState;
 }

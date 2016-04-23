@@ -7,14 +7,27 @@ export default React.createClass({
 	
 	render:function(){
 		var messageStyle = {
-			color: this.props.message.color
+			backgroundColor: lighten(this.props.message.color, 50),
+			borderColor: lighten(this.props.message.color, 30),
+			color: "#404040",
+			fontFamily: this.props.message.font,
+			fontSize: this.props.message.fontSize,
+		};
+
+		var userNameStyle = {
+			color: "black",
 		};
 
 		return(
-			<div style={messageStyle}>
-				<span>{this.props.message.userName}:</span>
-				<span>{this.props.message.content}</span>
+			<div className="messageLine">
+				<span style={userNameStyle}>{this.props.message.userName}</span>
+				<span style={messageStyle} className="messageBubble">{this.props.message.content}</span>
 			</div>
 		)
 	}
 })
+
+function lighten(color, percent) {
+    var num = parseInt(color.slice(1),16), amt = Math.round(2.55 * percent), R = (num >> 16) + amt, G = (num >> 8 & 0x00FF) + amt, B = (num & 0x0000FF) + amt;
+    return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 + (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255)).toString(16).slice(1);
+}

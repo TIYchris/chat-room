@@ -1,29 +1,65 @@
 #chatform{
-margin: 0 auto;
+    margin: 0 auto;
 }
 
 #chatarea{
 	height:500px;
 	width: 700px;
-	background-color: #686868;
+	background-color: #E0E3E8;
 	color: white;
 	margin: 0 auto;
+    overflow: auto;
+    padding: 20px;
+}
+.chatContainer{
+    height:510px;
+    width: 740px;
+    margin: 0 auto;
 }
 .title{
 	text-align: center;
+    color:whitesmoke;
 }
 .button	{
     height: 30px;
     width: 140px;
-    position: relative;
-    left: 391px;
+   
     margin-top:20px;
 }
 .text{
-    position: relative;
-    left: 369px;
-    width: 541px;
+    width: 536px;
     height: 30px;
     border: 1px solid black;
     margin-top: 20px;
+    padding-left:20px;
+    margin-right: 25px;
+}
+
+.usersBox{
+    height: 300px;
+    width: 150px;
+    background-color: #686868;
+    position: relative;
+    float: right;
+    top: -300px;
+    left: -125px;   
+}
+.prefs{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:15px;
+    height: 300px;
+    width:300px;
+    background-color: #686868;
+}
+.messageBubble{
+    border:3px solid whitesmoke;
+    border-radius: 10px;
+    padding: 1px 3px;
+    background-color: whitesmoke;
+    margin-left: 20px;
+}
+.messageLine{
+    margin-bottom: 14px;
 }

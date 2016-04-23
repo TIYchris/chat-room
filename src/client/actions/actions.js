@@ -8,7 +8,25 @@ socket.on('add:message', function(message){
     type: 'ADD_MESSAGE',
     message: message
   });
-})
+});
+
+socket.on('USER_JOINED', function(userName){
+  store.dispatch({
+    type: 'USER_JOINED',
+    userName: userName
+  });
+});
+
+socket.on('USER_LEFT', function(userName){
+  store.dispatch({
+    type: 'USER_LEFT',
+    userName: userName
+  });
+});
+
+socket.on('USERS', function(users){
+  console.log("Current Users: ", users)
+});
 
 export function addMessage(message) {
   socket.emit('add:message', message);
@@ -16,4 +34,22 @@ export function addMessage(message) {
     type: 'ADD_MESSAGE',
     message: message
   });
+}
+
+export function loginUser(userName) {
+	socket.emit("USER_JOINED", userName);
+    window.localStorage.setItem("userName", userName);
+	store.dispatch({
+		type: "USER_LOGGED_IN",
+		userName: userName
+	});
+}
+
+export function logoutUser(userName) {
+	socket.emit("USER_LEFT", userName);
+    window.localStorage.removeItem("userName");
+    store.dispatch({
+      type: "USER_LOGGED_OUT"
+    });
+
 }

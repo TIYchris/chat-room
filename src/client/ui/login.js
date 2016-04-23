@@ -1,5 +1,9 @@
 import React from 'react';
 import store from 'store';
+import { loginUser } from 'actions/actions';
+
+
+require('assets/styles/login.scss');
 
 export default React.createClass({
     getInitialState: function() {
@@ -13,19 +17,15 @@ export default React.createClass({
         return;
       }
 
-      window.localStorage.setItem('userName', this.refs.title.value);
-      window.localStorage.setItem('color', this.refs.color.value);
-
-      location.reload();
+      loginUser(this.refs.title.value);
     },
 
     render: function () {
       return (
         <form className="popupContainer">
-            <label className="titleLabel">Your Name!</label>
+            <label htmlFor="userName" className="titleLabel">Enter Your Name!</label>
             <input ref="title" className="titleInput" type="text"></input>
-            <button className="tubmit" onClick={this.onSubmit}>SUBMIT</button>
-            <input type="color" ref="color" />
+            <button className="submit" onClick={this.onSubmit}>SUBMIT</button>
         </form>
       )
     }
