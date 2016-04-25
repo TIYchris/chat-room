@@ -44,6 +44,7 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       template: path.join(config.paths.client, 'assets/html/index.html'),
       hash: false,
+      favicon: path.join(config.paths.client, 'assets/images/favicon.ico'),
       filename: 'index.html',
       inject: 'body',
       minify: {

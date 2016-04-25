@@ -13,7 +13,9 @@ export default React.createClass({
 		return {
 			messages: [],
 			currentMessage: '',
-      userName: window.localStorage.getItem('userName')
+      userName: window.localStorage.getItem('userName'),
+      currentColor: window.localStorage.getItem('color'),
+      fontSize: window.localStorage.getItem('fontSize')
 		};
 	},
 
@@ -45,21 +47,28 @@ export default React.createClass({
     	});
   },
 
+  colorClicked: function(e) {
+    e.preventDefault();
+    window.localStorage.setItem('color', e.target.style.backgroundColor);
+    this.setState({
+      currentColor: e.target.style.backgroundColor
+    })
+  },
+
 	onSubmit: function(e){
     	e.preventDefault();
-      window.localStorage.setItem('color', this.refs.color.value);
       window.localStorage.setItem('font', this.refs.font.value);
-      window.localStorage.setItem('fontSize', this.refs.fontSize.value)
 
     	if (this.state.currentMessage !== '') {
-        const payload = {
+        const message = {
           content: this.state.currentMessage,
           userName: this.state.userName,
           color: window.localStorage.getItem('color'),
           font: window.localStorage.getItem('font'),
-          fontSize: window.localStorage.getItem('fontSize')
+          fontSize: window.localStorage.getItem('fontSize'),
+          time: new Date()
         };
-      	addMessage(payload);
+      	addMessage(message);
       	this.setState({
         	currentMessage: ''
       	});  
@@ -87,7 +96,27 @@ export default React.createClass({
     logoutUser(this.state.userName);
   },
 
+  getColorStyle: function(color) {
+    const selected = this.state.currentColor === color;
+    return {
+      backgroundColor: color,
+      border: selected ? "5px solid " + color : "0px solid transparent",
+      borderRadius: selected ? "5px" : "3px"
+    };
+  },
+
+  onFontSizeChange: function(e) {
+    window.localStorage.setItem('fontSize', e.target.value);
+    this.setState({
+      fontSize: e.target.value
+    });
+  },
+
 	render: function () {
+    const small = this.state.fontSize === "12px";
+    const normal = this.state.fontSize === "16px";
+    const large = this.state.fontSize === "24px";
+
       if (!this.state.userName) {
          return (<Login />);
       }
@@ -95,7 +124,6 @@ export default React.createClass({
 	    return (
         <div>
   	    	<div className="chatContainer">
-            <button onClick={this.logout}>Logout</button>
   	    		<h1 className="title">The Chat Room</h1>
   	    		<div id="chatarea" ref="messages">
     					{this.state.messages.map(function(message, index){
@@ -107,29 +135,46 @@ export default React.createClass({
       			  <button className="button" type="submit">Submit</button>
     				</form>
   	    	</div>
+          <button className="logout" onClick={this.logout}>Logout</button>
           <div className="usersBox">
             {this.state.users.map(function(user, index){
               return (<div key={index}>{user}</div>)
             })}
           </div>
           <form className="prefs">
-              <input type="color" ref="color" />
-              <select ref="fontSize">
-                <option style={{fontSize: '16px'}}>normal</option>
-                <option style={{fontSize: '12px'}}>small</option>
-                <option style={{fontSize: '20px'}}>large</option>
-              </select>
+              <div>
+                <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(0, 0, 0)")}></div>
+                <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(255, 0, 0)")}></div>
+                <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(0, 255, 0)")}></div>
+                <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(0, 0, 255)")}></div>
+                <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(255, 255, 0)")}></div>
+                <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(0, 255, 255)")}></div>
+                <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(255, 0, 255)")}></div>
+                <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(255, 128, 0)")}></div>
+              </div>
+              <div>
+                <div>
+                  <input onChange={this.onFontSizeChange} type="radio" value='12px' checked={small}></input>
+                  <label style={{fontSize: '12px'}}>small</label>
+                </div>
+                <div>
+                  <input onChange={this.onFontSizeChange} type="radio" value='16px' checked={normal}></input>
+                  <label style={{fontSize: '16px'}}>normal</label>
+                </div>
+                <div>
+                  <input onChange={this.onFontSizeChange} type="radio" value='24px' checked={large}></input>
+                  <label style={{fontSize: '24px'}}>large</label>
+                </div>
+              </div>
               <select ref="font">
-                <option style={{fontFamily: 'Comic Sans MS'}}>Comic Sans MS</option>
-                <option style={{fontFamily: 'Arial'}}>Arial</option>
-                <option style={{fontFamily: 'Georgia, serif'}}>Georgia, serif</option>
-                <option style={{fontFamily: 'Arial, Helvetica, sans-serif'}}>Arial, Helvetica, sans-serif</option>
-                <option style={{fontFamily: "'Arial Black', Gadget, sans-serif"}}>Arial Black, Gadget, sans-serif</option>
-                <option style={{fontFamily: "'Comic Sans MS', cursive, sans-serif"}}>Comic Sans MS, cursive, sans-serif</option>
-                <option style={{fontFamily: 'Impact, Charcoal, sans-serif'}}>Impact, Charcoal, sans-serif</option>
-                <option style={{fontFamily: 'Tahoma, Geneva, sans-serif'}}>Tahoma, Geneva, sans-serif</option>
-                <option style={{fontFamily: "'Courier New', Courier, monospace"}}>"Courier New", Courier, monospace</option>
-                <option style={{fontFamily: "'Lucida Console', Monaco, monospace"}}>"Lucida Console", Monaco, monospace</option>
+                <option value="Arial">Arial</option>
+                <option value="Arial Black, Gadget, sans-serif">Arial Black</option>
+                <option value="Comic Sans MS">Comic Sans</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="Impact, Charcoal, sans-serif">Impact</option>
+                <option value="Tahoma, Geneva, sans-serif">Tahoma</option>
+                <option value='"Courier New", Courier, monospace'>Courier</option>
+                <option value='"Lucida Console", Monaco, monospace'>Console</option>
               </select>
             </form>
         </div>

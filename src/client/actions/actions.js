@@ -15,12 +15,34 @@ socket.on('USER_JOINED', function(userName){
     type: 'USER_JOINED',
     userName: userName
   });
+
+  store.dispatch({
+    type: 'ADD_MESSAGE',
+    message: {
+      userName: "system",
+      content: userName + ' has joined',
+      fontStyle: "italic",
+      fontSize: "10px",
+      time: new Date()
+    }
+  });
 });
 
 socket.on('USER_LEFT', function(userName){
   store.dispatch({
     type: 'USER_LEFT',
     userName: userName
+  });
+
+  store.dispatch({
+    type: 'ADD_MESSAGE',
+    message: {
+      userName: "system",
+      content: userName + ' has left',
+      fontStyle: "italic",
+      fontSize: "10px",
+      time: new Date()
+    }
   });
 });
 

@@ -25,9 +25,9 @@ export default function (state = messagesInitialState, action) {
 
     case 'USER_LEFT':
     	var index = newState.users.indexOf(action.userName);
-		if (index > -1) {
-		    newState.users.splice(index, 1);
-		}
+  		if (index > -1) {
+  		    newState.users.splice(index, 1);
+  		}
     	break;
   }
 

@@ -10,6 +10,7 @@
 	margin: 0 auto;
     overflow: auto;
     padding: 20px;
+    border-radius: 3px; 
 }
 .chatContainer{
     height:510px;
@@ -23,7 +24,7 @@
 .button	{
     height: 30px;
     width: 140px;
-   
+    border-radius: 3px; 
     margin-top:20px;
 }
 .text{
@@ -33,33 +34,68 @@
     margin-top: 20px;
     padding-left:20px;
     margin-right: 25px;
+    border-radius: 3px; 
 }
 
 .usersBox{
-    height: 300px;
+    height: 575px;
     width: 150px;
     background-color: #686868;
     position: relative;
     float: right;
-    top: -300px;
-    left: -125px;   
+    top: -451px;
+    left: -85px;
+    overflow: auto;
+    padding: 15px;
+    border-radius: 3px;
+}
+select {
+    height: 40px;
+    width: 100%;
+    padding-left:40px;
+    margin-top:20px;
+    border-radius: 3px;
 }
 .prefs{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding:15px;
-    height: 300px;
-    width:300px;
+    padding: 15px;
+    height: 190px;
+    width: 250px;
     background-color: #686868;
+    position: relative;
+    top: -115px;
+    left: 36px;
+    border-radius: 3px;
 }
+
 .messageBubble{
     border:3px solid whitesmoke;
     border-radius: 10px;
     padding: 1px 3px;
     background-color: whitesmoke;
     margin-left: 20px;
+    box-shadow: 10px 10px 5px #888888;
 }
 .messageLine{
     margin-bottom: 14px;
+}
+.time{
+    float:right;
+    font-size: 8px;
+    color:#686868;
+}
+.colorSwatch{
+    width:15px;
+    height:15px;
+    border-radius: 3px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 3px;
+}
+.logout{
+    position: relative;
+    top: -451px;
+    left: 115px;
+    border-radius: 3px;
+    width: 100px;
+    height: 30px;
 }

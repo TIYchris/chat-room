@@ -6,22 +6,34 @@ require('assets/styles/chatroomContainer.scss');
 export default React.createClass({
 	
 	render:function(){
-		var messageStyle = {
-			backgroundColor: lighten(this.props.message.color, 50),
-			borderColor: lighten(this.props.message.color, 30),
+		const message = this.props.message;
+
+		const messageStyle = {
+			backgroundColor: message.color,
+			borderColor: message.color,
 			color: "#404040",
-			fontFamily: this.props.message.font,
-			fontSize: this.props.message.fontSize,
+			fontFamily: message.font,
+			fontSize: message.fontSize,
+			fontStyle: message.fontStyle || "normal"
 		};
 
-		var userNameStyle = {
+		const userNameStyle = {
 			color: "black",
 		};
 
+		if (message.userName === 'system') {
+			userNameStyle.fontFamily = messageStyle.fontFamily;
+			userNameStyle.fontSize = messageStyle.fontSize;
+			userNameStyle.fontStyle = messageStyle.fontStyle;
+		}
+
+		const time = message.time ? new Date(message.time).toLocaleTimeString() : "";
+
 		return(
 			<div className="messageLine">
-				<span style={userNameStyle}>{this.props.message.userName}</span>
-				<span style={messageStyle} className="messageBubble">{this.props.message.content}</span>
+				<span style={userNameStyle}>{message.userName}</span>
+				<span style={messageStyle} className="messageBubble">{message.content}</span>
+				<span className="time" >{time}</span>
 			</div>
 		)
 	}
