@@ -44,7 +44,7 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       template: path.join(config.paths.client, 'assets/html/index.html'),
       hash: false,
-      favicon: path.join(config.paths.client, 'assets/images/favicon.ico'),
+      favicon: path.join(config.paths.client, 'assets/images/chat-icon-74442.png'),
       filename: 'index.html',
       inject: 'body',
       minify: {

@@ -152,18 +152,18 @@ export default React.createClass({
                 <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(255, 0, 255)")}></div>
                 <div onClick={this.colorClicked} className="colorSwatch" style={this.getColorStyle("rgb(255, 128, 0)")}></div>
               </div>
-              <div>
-                <div>
+              <div className="fontSize">
+                <div className="firstFont">
                   <input onChange={this.onFontSizeChange} type="radio" value='12px' checked={small}></input>
-                  <label style={{fontSize: '12px'}}>small</label>
+                  <label className="fontLabel" style={{fontSize: '12px'}}>small</label>
                 </div>
                 <div>
                   <input onChange={this.onFontSizeChange} type="radio" value='16px' checked={normal}></input>
-                  <label style={{fontSize: '16px'}}>normal</label>
+                  <label className="fontLabel" style={{fontSize: '16px'}}>normal</label>
                 </div>
                 <div>
                   <input onChange={this.onFontSizeChange} type="radio" value='24px' checked={large}></input>
-                  <label style={{fontSize: '24px'}}>large</label>
+                  <label className="fontLabel" style={{fontSize: '24px'}}>large</label>
                 </div>
               </div>
               <select ref="font">

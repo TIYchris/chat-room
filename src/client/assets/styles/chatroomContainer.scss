@@ -35,11 +35,12 @@
     padding-left:20px;
     margin-right: 25px;
     border-radius: 3px; 
+    outline: none;
 }
 
 .usersBox{
     height: 575px;
-    width: 150px;
+    width: 170px;
     background-color: #686868;
     position: relative;
     float: right;
@@ -76,7 +77,7 @@ select {
     box-shadow: 10px 10px 5px #888888;
 }
 .messageLine{
-    margin-bottom: 14px;
+    margin-bottom: 18px;
 }
 .time{
     float:right;
@@ -99,3 +100,14 @@ select {
     width: 100px;
     height: 30px;
 }
+.firstFont{
+    margin-bottom: 10px;
+}
+.fontSize{
+    padding-left: 3px;
+    margin-top: 6px;
+}
+.fontLabel{
+    margin-left: 10px;   
+} 
+  
