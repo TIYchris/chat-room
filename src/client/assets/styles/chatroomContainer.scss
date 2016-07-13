@@ -10,21 +10,22 @@
 	margin: 0 auto;
     overflow: auto;
     padding: 20px;
-    border-radius: 3px; 
+    border-radius: 3px;
 }
 .chatContainer{
     height:510px;
     width: 740px;
-    margin: 0 auto;
+    margin: 100px auto 0;
 }
 .title{
 	text-align: center;
     color:whitesmoke;
+    margin-top:150px;
 }
 .button	{
     height: 30px;
     width: 140px;
-    border-radius: 3px; 
+    border-radius: 3px;
     margin-top:20px;
 }
 .text{
@@ -34,18 +35,18 @@
     margin-top: 20px;
     padding-left:20px;
     margin-right: 25px;
-    border-radius: 3px; 
+    border-radius: 3px;
     outline: none;
 }
 
 .usersBox{
     height: 575px;
-    width: 170px;
+    min-width: 170px;
     background-color: #686868;
     position: relative;
     float: right;
-    top: -451px;
-    left: -85px;
+    top: -510px;
+    left: -325px;
     overflow: auto;
     padding: 15px;
     border-radius: 3px;
@@ -63,8 +64,8 @@ select {
     width: 250px;
     background-color: #686868;
     position: relative;
-    top: -115px;
-    left: 36px;
+    top: -173px;
+    left: 248px;
     border-radius: 3px;
 }
 
@@ -94,10 +95,10 @@ select {
 }
 .logout{
     position: relative;
-    top: -451px;
-    left: 115px;
+    top: -511px;
+    left: 249px;
     border-radius: 3px;
-    width: 100px;
+    width: 250px;
     height: 30px;
 }
 .firstFont{
@@ -108,6 +109,5 @@ select {
     margin-top: 6px;
 }
 .fontLabel{
-    margin-left: 10px;   
-} 
-  
+    margin-left: 10px;
+}

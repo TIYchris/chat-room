@@ -71,7 +71,7 @@ export default React.createClass({
       	addMessage(message);
       	this.setState({
         	currentMessage: ''
-      	});  
+      	});
     	}
     	this.refs.messageInput.focus();
   },
@@ -84,7 +84,7 @@ export default React.createClass({
 
     	this.shouldScrollBottom = (node.scrollTop + node.offsetHeight) === node.scrollHeight;
   },
-  	
+
   componentDidUpdate: function () {
       const node = this.refs.messages;
    		if (node && this.shouldScrollBottom) {
@@ -123,8 +123,8 @@ export default React.createClass({
 
 	    return (
         <div>
+			<h1 className="title">The Chat Room</h1>
   	    	<div className="chatContainer">
-  	    		<h1 className="title">The Chat Room</h1>
   	    		<div id="chatarea" ref="messages">
     					{this.state.messages.map(function(message, index){
     						return (<Message key={index} message={message} />)
